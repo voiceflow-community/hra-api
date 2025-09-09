@@ -2,8 +2,8 @@
 
 > **Based on [HallBayes](https://github.com/leochlon/hallbayes)** - Implementation of "Compression Failure in LLMs: Bayesian in Expectation, Not in Realization"
 
-**REST API for post-hoc calibration** of large language models using the Expectation-level Decompression Law (EDFL) framework. This API turns raw prompts into:  
-1) **bounded hallucination risk** calculations using EDFL methodology, and  
+**REST API for post-hoc calibration** of large language models using the Expectation-level Decompression Law (EDFL) framework. This API turns raw prompts into:
+1) **bounded hallucination risk** calculations using EDFL methodology, and
 2) **decision recommendations** to **ANSWER** or **REFUSE** under target SLA requirements.
 
 The system evaluates prompts by creating "skeleton" versions (with masked entities/evidence) to measure information lift and calculate hallucination risk bounds. All scoring relies **only** on the OpenAI Chat Completions API.
@@ -16,8 +16,8 @@ The system evaluates prompts by creating "skeleton" versions (with masked entiti
 
 ```bash
 # Clone repository
-git clone <repo-url>
-cd hallbayes
+git clone https://github.com/voiceflow-community/hra-api.git
+cd hra-api
 
 # Create configuration file
 cp .env.example .env
@@ -126,7 +126,7 @@ Main evaluation endpoint that assesses hallucination risk and makes answer/refus
 The system uses the Expectation-level Decompression Law (EDFL) to bound hallucination risk:
 
 - **Information budget:** $\bar{\Delta} = \frac{1}{m}\sum_k \mathrm{clip}_+(\log P(y) - \log S_k(y), B)$
-- **Prior masses:** $q_k = S_k(\mathcal{A})$ with $\bar{q} = \frac{1}{m}\sum_k q_k$  
+- **Prior masses:** $q_k = S_k(\mathcal{A})$ with $\bar{q} = \frac{1}{m}\sum_k q_k$
 - **EDFL bound:** $\bar{\Delta} \ge \mathrm{KL}(\mathrm{Ber}(p) \| \mathrm{Ber}(\bar{q})) \Rightarrow p \le p_{\max}(\bar{\Delta},\bar{q})$
 
 ### Decision Logic
@@ -326,5 +326,5 @@ Configure these in your `.env` file:
 
 Based on "Compression Failure in LLMs: Bayesian in Expectation, Not in Realization" methodology with EDFL/ISR/B2T decision framework.
 
-**License:** MIT License - see LICENSE file for details  
+**License:** MIT License - see LICENSE file for details
 **Author:** Hassana Labs (https://hassana.io)
